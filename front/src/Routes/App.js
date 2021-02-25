@@ -6,7 +6,7 @@ const initialState = {
 };
 const Store = createContext(initialState)
 
-
+/**===============================Body Form===================================== */
 const Form = () => {
   const formRef = useRef(null);
   const { dispatch, state: { todo } } = useContext(Store);
@@ -21,7 +21,7 @@ const Form = () => {
       id: null,
       completed: false
     };
-
+    
 
     fetch(HOST_API + "/todo", {
       method: "POST",
@@ -64,19 +64,26 @@ const Form = () => {
   }
 
   return <form ref={formRef}>
-    <input
-      type="text"
-      name="name"
-      placeholder="¿Qué piensas hacer hoy?"
-      defaultValue={item.name}
-      onChange={(event) => {
-        setState({ ...state, name: event.target.value })
-      }}  ></input>
-    {item.id && <button onClick={onEdit}>Actualizar</button>}
-    {!item.id && <button onClick={onAdd}>Crear</button>}
+    <div>
+      <h2 className="center">To-Do List</h2>
+      <div className="formRefStyle">
+        <input
+          className ="boxDecoration"
+          type="text"
+          name="name"
+          placeholder="¿Qué piensas hacer hoy?"
+          defaultValue={item.name}
+          onChange={(event) => {
+            setState({ ...state, name: event.target.value })
+          }}  ></input>
+        {item.id && <button onClick={onEdit}>Actualizar</button>}
+        {!item.id && <button onClick={onAdd}>Crear</button>}
+    </div>
+  </div>
   </form>
 }
 
+/**===============================Body List===================================== */
 
 const List = () => {
   const { dispatch, state: { todo } } = useContext(Store);
@@ -123,22 +130,23 @@ const List = () => {
   };
 
   const decorationDone = {
-    textDecoration: 'line-through'
+    textDecoration: 'line-through',
+
   };
-  return <div>
+  return <div className="bodyTodoList">
     <table >
-      <thead>
+      <thead className="center ">
         <tr>
           <td>ID</td>
           <td>Tarea</td>
           <td>¿Completado?</td>
         </tr>
       </thead>
-      <tbody>
+      <tbody className="center">
         {currentList.map((todo) => {
           return <tr key={todo.id} style={todo.completed ? decorationDone : {}}>
             <td>{todo.id}</td>
-            <td>{todo.name}</td>
+            <td className="bodyTodoListMapName">{todo.name}</td>
             <td><input type="checkbox" defaultChecked={todo.completed} onChange={(event) => onChange(event, todo)}></input></td>
             <td><button onClick={() => onDelete(todo.id)}>Eliminar</button></td>
             <td><button onClick={() => onEdit(todo)}>Editar</button></td>
@@ -192,16 +200,19 @@ const StoreProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return <Store.Provider value={{ state, dispatch }}>
+    <header>
+      <h1 className="center">Dashboard</h1>
+    </header>
     {children}
   </Store.Provider>
-
 }
 
 function App() {
   return <StoreProvider>
-    <h3>To-Do List</h3>
+  <div className="todoList">
     <Form />
     <List />
+  </div>
   </StoreProvider>
 }
 
