@@ -1,15 +1,8 @@
 import React, { useContext, useReducer, useEffect, useRef, useState, createContext } from 'react';
 import reducer from "../reducers";
+import index from "../localhost/index"
 
-
-
-/**===============================Conexión a BD===================================== */
-
-const HOST_API = "http://localhost:8080/api";
-const initialState = {
-  todo: { list: [], item: {} }
-};
-const Store = createContext(initialState)
+const Store = createContext(index.initialState())
 
 /**===============================Body Form===================================== */
 const Form = () => {
@@ -28,7 +21,7 @@ const Form = () => {
     };
     
 
-    fetch(HOST_API + "/todo", {
+    fetch(index.HOST_API() + "/todo", {
       method: "POST",
       body: JSON.stringify(request),
       headers: {
@@ -53,7 +46,7 @@ const Form = () => {
     };
 
 
-    fetch(HOST_API + "/todo", {
+    fetch(index.HOST_API() + "/todo", {
       method: "PUT",
       body: JSON.stringify(request),
       headers: {
@@ -87,7 +80,6 @@ const Form = () => {
   </div>
   </form>
 }
-
 /**===============================Body List===================================== */
 
 const List = () => {
@@ -95,7 +87,7 @@ const List = () => {
   const currentList = todo.list;
 
   useEffect(() => {
-    fetch(HOST_API + "/todos")
+    fetch(index.HOST_API() + "/todos")
       .then(response => response.json())
       .then((list) => {
         dispatch({ type: "update-list", list })
@@ -104,7 +96,7 @@ const List = () => {
 
 
   const onDelete = (id) => {
-    fetch(HOST_API + "/" + id + "/todo", {
+    fetch(index.HOST_API() + "/" + id + "/todo", {
       method: "DELETE"
     }).then((list) => {
       dispatch({ type: "delete-item", id })
@@ -121,7 +113,7 @@ const List = () => {
       id: todo.id,
       completed: event.target.checked
     };
-    fetch(HOST_API + "/todo", {
+    fetch(index.HOST_API() + "/todo", {
       method: "PUT",
       body: JSON.stringify(request),
       headers: {
@@ -163,10 +155,11 @@ const List = () => {
 }
 
 
+
 /**===============================StoreProvider===================================== */
 
 const StoreProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, index.initialState());
 
   return <Store.Provider value={{ state, dispatch }}>
     <header>
