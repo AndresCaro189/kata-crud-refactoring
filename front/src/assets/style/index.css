@@ -30,9 +30,14 @@ a:hover {
 }
 input.boxDecoration{
   border-radius: 5px;
-  height: 20px;
-  width: 300px;
+  height: 27px;
+  width: 550px;
   text-align: center;
+}
+@media only screen and (max-width: 780px) {
+  input.boxDecoration{
+    width: 50%;
+  }
 }
 button{
   margin-left: 10px;
