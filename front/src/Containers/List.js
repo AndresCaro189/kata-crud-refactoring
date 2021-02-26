@@ -1,6 +1,7 @@
-import React, { useContext, useEffect } from 'react';
-import index from "../localhost/index";
-import Store from "../Routes/App"
+import React, { useContext,  useEffect } from 'react';
+import HOST_API from "../localhost";
+import Store from "../components/StoreProvider";
+
 
 
 /**===============================Body List===================================== */
@@ -10,7 +11,7 @@ const List = () => {
     const currentList = todo.list;
   
     useEffect(() => {
-      fetch(index.HOST_API() + "/todos")
+      fetch(HOST_API() + "/todos")
         .then(response => response.json())
         .then((list) => {
           dispatch({ type: "update-list", list })
@@ -19,7 +20,7 @@ const List = () => {
   
   
     const onDelete = (id) => {
-      fetch(index.HOST_API() + "/" + id + "/todo", {
+      fetch(HOST_API() + "/" + id + "/todo", {
         method: "DELETE"
       }).then((list) => {
         dispatch({ type: "delete-item", id })
@@ -36,7 +37,7 @@ const List = () => {
         id: todo.id,
         completed: event.target.checked
       };
-      fetch(index.HOST_API() + "/todo", {
+      fetch(HOST_API() + "/todo", {
         method: "PUT",
         body: JSON.stringify(request),
         headers: {

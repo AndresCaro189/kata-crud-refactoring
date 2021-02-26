@@ -35,11 +35,46 @@ input.boxDecoration{
   text-align: center;
 }
 button{
+  margin-left: 10px;
   border-radius: 5px;
-  height: 25px;
+  height: 27px;
+  width: 100px;
 }
-button:hover{
-  color: #f4f;
+.buttonActuar{
+  background-color: rgb(235, 252, 7);
+  font-weight:bolder;
+}
+.buttonActuar:hover{
+  background-color: rgb(234, 240, 157);
+  font-size: large;
+  font-weight:bolder;
+}
+.buttonCrear{
+  background-color: rgb(7, 252, 19);
+  font-weight:bolder;
+}
+.buttonCrear:hover{
+  background-color: rgb(113, 236, 119);
+  font-size: large;
+  font-weight:bolder;
+}
+.buttonEliminar{
+  background-color: rgb(252, 7, 7);
+  font-weight:bolder;
+}
+.buttonEliminar:hover{
+  background-color: rgb(245, 150, 150);
+  font-size: large;
+  font-weight:bolder;
+}
+.buttonEditar{
+  background-color: rgb(252, 154, 7);
+  font-weight:bolder;
+}
+.buttonEditar:hover{
+  background-color: rgb(243, 207, 152);
+  font-size: large;
+  font-weight:bolder;
 }
 
 .todoList{

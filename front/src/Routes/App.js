@@ -2,6 +2,7 @@ import React, { useContext, useReducer, useEffect, useRef, useState, createConte
 import reducer from "../reducers";
 import index from "../localhost/index"
 
+
 const Store = createContext(index.initialState())
 
 /**===============================Body Form===================================== */
@@ -74,12 +75,13 @@ const Form = () => {
           onChange={(event) => {
             setState({ ...state, name: event.target.value })
           }}  ></input>
-        {item.id && <button onClick={onEdit}>Actualizar</button>}
-        {!item.id && <button onClick={onAdd}>Crear</button>}
+        {item.id && <button onClick={onEdit} className="buttonActuar">Actualizar</button>}
+        {!item.id && <button onClick={onAdd} className="buttonCrear">Crear</button>}
     </div>
   </div>
   </form>
 }
+
 /**===============================Body List===================================== */
 
 const List = () => {
@@ -145,15 +147,18 @@ const List = () => {
             <td>{todo.id}</td>
             <td className="bodyTodoListMapName">{todo.name}</td>
             <td><input type="checkbox" defaultChecked={todo.completed} onChange={(event) => onChange(event, todo)}></input></td>
-            <td><button onClick={() => onDelete(todo.id)}>Eliminar</button></td>
-            <td><button onClick={() => onEdit(todo)}>Editar</button></td>
+            <div>
+            <td><button onClick={() => onDelete(todo.id)} className="buttonEliminar">Eliminar</button></td>
+            </div>
+            <div>
+            <td><button onClick={() => onEdit(todo)} className="buttonEditar">Editar</button></td>
+            </div>
           </tr>
         })}
       </tbody>
     </table>
   </div>
 }
-
 
 
 /**===============================StoreProvider===================================== */
