@@ -1,6 +1,9 @@
 import React, { useContext, useReducer, useEffect, useRef, useState, createContext } from 'react';
-import reducer from "../reducers/index"
+import reducer from "../reducers";
 
+
+
+/**===============================Conexión a BD===================================== */
 
 const HOST_API = "http://localhost:8080/api";
 const initialState = {
@@ -160,8 +163,7 @@ const List = () => {
 }
 
 
-
-
+/**===============================StoreProvider===================================== */
 
 const StoreProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -173,6 +175,9 @@ const StoreProvider = ({ children }) => {
     {children}
   </Store.Provider>
 }
+
+
+/**==================================App======================================== */
 
 function App() {
   return <StoreProvider>

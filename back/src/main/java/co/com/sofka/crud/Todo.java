@@ -1,5 +1,6 @@
 package co.com.sofka.crud;
 
+import org.hibernate.validator.constraints.Length;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,6 +10,7 @@ public class Todo {
     @Id
     @GeneratedValue
     private Long id;
+    @Length(min=3, max=100)
     private String name;
     private boolean completed;
     private String groupListId;
