@@ -7,7 +7,8 @@ import App from './Routes/App';
 import reducer from "./reducers"
 
 
-const store = createStore(reducer)
+
+export const store = createStore(reducer)
 
 ReactDOM.render(
     <Provider store = {store}>
