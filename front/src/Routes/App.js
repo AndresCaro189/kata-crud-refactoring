@@ -22,15 +22,12 @@ const Form = () => {
     }
     return isValid
   }
-  /**state.name.charAt(i)=='#'|| state.name.charAt(i)=='*'
-      || state.name.charAt(i)=='$' || state.name.charAt(i)=='% */
-
   const validadChar = () =>{
     let isValidChar = true;
     setError(null)
     for(var i =0; i<state.name.length;i++){
       if(state.name.charAt(i)=='#'){
-        setError("Debes ingresar una tarea que no tenga #, *,, $, %");
+        setError("Debes ingresar una tarea que no tenga #, *, $, %");
         isValidChar = false;
       }
     }
