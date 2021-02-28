@@ -5,12 +5,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Date;
-import java.util.Optional;
 
 @Service
-public class TodoService {
-
+public class TodoService extends ValidateSave {
 
     @Autowired
     private TodoRepository repository;
@@ -19,6 +16,7 @@ public class TodoService {
 
     public Todo save(Todo todo){
         try {
+            validateChar(todo);
             validateLength(todo);
         }catch (RuntimeException exception){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,exception.getMessage());
@@ -26,11 +24,7 @@ public class TodoService {
         return repository.save(todo);
     }
 
-    private void validateLength(Todo todo) {
-        if(todo.getName().length()<3 || todo.getName().length()>100){
-            throw new IllegalArgumentException("Se permiten caracteres de 3 hasta 100");
-        }
-    }
+
 
     public void delete(Long id){
         repository.delete(get(id));

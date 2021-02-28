@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class Todo {
@@ -11,9 +12,10 @@ public class Todo {
     @GeneratedValue
     private Long id;
     @Length(min=3, max=100)
+    @Pattern(regexp = "[a-zA-Z0-9\\s]+", message = "No permite caracteres especiales")
     private String name;
     private boolean completed;
-    private String groupListId;
+    private String groupListId = "Cliente";
 
     public String getGroupListId() {
         return groupListId;

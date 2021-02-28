@@ -16,13 +16,20 @@ const Form = () => {
   const validForm = () =>{
     let isValid =true;
     setError(null)
-    if(state.name.length<3){
+    if(state.name.length<3 || state.name.length>100 ) {
       setError("Debes ingresar una tarea de mas de dos letras")
       isValid = false
     }
     return isValid
   }
-
+  /**state.name.charAt(i)=='#'|| state.name.charAt(i)=='*'
+      || state.name.charAt(i)=='$' || state.name.charAt(i)=='% */
+      /*
+  const validadChar = () =>{
+    let isValidChar = true;
+    setError()
+    for(var)
+  }*/
   const onAdd = (event) => {
     event.preventDefault();
     
