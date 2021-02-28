@@ -14,7 +14,9 @@ public class ValidateSave {
     }
 
     private boolean isaBooleanchar(Todo todo, int i) {
-        return isaBooleanCharCaracter(todo, i, '#') || isaBooleanCharCaracter(todo, i, '*') || isaBooleanCharCaracter(todo, i, '$') || isaBooleanCharCaracter(todo, i, '%');
+        return isaBooleanCharCaracter(todo, i, '#') || isaBooleanCharCaracter(todo, i, '*')
+                || isaBooleanCharCaracter(todo, i, '$') || isaBooleanCharCaracter(todo, i, '%')
+                || isaBooleanCharCaracter(todo, i, '-');
     }
 
     private boolean isaBooleanCharCaracter(Todo todo, int i, char c) {

@@ -5,6 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 
 @Service
 public class TodoService extends ValidateSave {
@@ -12,7 +14,7 @@ public class TodoService extends ValidateSave {
     @Autowired
     private TodoRepository repository;
 
-    public Iterable<Todo> list(){ return repository.findAll(); }
+    public List<Todo> list(){ return repository.findAll(); }
 
     public Todo save(Todo todo){
         try {

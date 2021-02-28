@@ -16,7 +16,7 @@ const Form = () => {
   const validForm = () =>{
     let isValid =true;
     setError(null)
-    if(state.name.length<3 || state.name.length>100 ) {
+    if(state.name.length<3 || state.name.length>100 || state.name===null) {
       setError("Debes ingresar una tarea de mas de dos letras")
       isValid = false
     }
@@ -24,16 +24,26 @@ const Form = () => {
   }
   /**state.name.charAt(i)=='#'|| state.name.charAt(i)=='*'
       || state.name.charAt(i)=='$' || state.name.charAt(i)=='% */
-      /*
+
   const validadChar = () =>{
     let isValidChar = true;
-    setError()
-    for(var)
-  }*/
+    setError(null)
+    for(var i =0; i<state.name.length;i++){
+      if(state.name.charAt(i)=='#'){
+        setError("Debes ingresar una tarea que no tenga #, *,, $, %");
+        isValidChar = false;
+      }
+    }
+    return isValidChar;
+  }
+
   const onAdd = (event) => {
     event.preventDefault();
     
     if (!validForm()){
+      return
+    }
+    if (!validadChar()){
       return
     }
 
@@ -60,6 +70,9 @@ const Form = () => {
     event.preventDefault();
 
     if (!validForm()){
+      return
+    }
+    if (!validadChar()){
       return
     }
 

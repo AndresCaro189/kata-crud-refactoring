@@ -12,7 +12,7 @@ public class Todo {
     @GeneratedValue
     private Long id;
     @Length(min=3, max=100)
-    @Pattern(regexp = "[a-zA-Z0-9\\s]+", message = "No permite caracteres especiales")
+    @Pattern(regexp = "[a-zA-Z0-9@\\s]+", message = "No permite caracteres especiales")
     private String name;
     private boolean completed;
     private String groupListId = "Cliente";
